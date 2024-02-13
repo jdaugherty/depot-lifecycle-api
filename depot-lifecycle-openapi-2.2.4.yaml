@@ -248,6 +248,148 @@ tags:
     \ showReadOnly={false}/>"
   x-displayName: RepairComplete
 paths:
+  '/hire/{adviceNumber}':
+    get:
+      summary: Check Hire Status
+      tags:
+        - Hire
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HireStatus'
+              examples:
+                On Hired Container:
+                  value:
+                    gateEventDate: '2024-01-08T16:35:38.862Z'
+                    hireEventDate: '2024-01-10T16:35:38.862Z'
+                    isHired: true
+                    depot: 
+                      companyId: DEHAMCMRA
+                      userCode: JDOE
+                      userName: John Doe,
+                      name: CMR Container Maintenance Rep.
+                      code: HAMG
+                      streetAddress: 
+                        -Main Street
+                      city: Hamburg,
+                      country: DE,
+                      postalCode: 12345
+                    adviceNumber: ADV12345
+                    status: CONFIRMED
+                Gated In Container - Pending Estimate Approval to Off Hire:
+                  value:
+                    gateEventDate: '2024-01-08T16:35:38.862Z'
+                    isHired: true
+                    depot: 
+                      companyId: DEHAMCMRA
+                      userCode: JDOE
+                      userName: John Doe,
+                      name: CMR Container Maintenance Rep.
+                      code: HAMG
+                      streetAddress: 
+                        -Main Street
+                      city: Hamburg,
+                      country: DE,
+                      postalCode: 12345
+                    adviceNumber: ADV12345
+                    status: ESTIMATE_PENDING
+                Gated In Container - Pending Repair to Off Hire:
+                  value:
+                    gateEventDate: '2024-01-08T16:35:38.862Z'
+                    isHired: true
+                    depot: 
+                      companyId: DEHAMCMRA
+                      userCode: JDOE
+                      userName: John Doe,
+                      name: CMR Container Maintenance Rep.
+                      code: HAMG
+                      streetAddress: 
+                        -Main Street
+                      city: Hamburg,
+                      country: DE,
+                      postalCode: 12345
+                    adviceNumber: ADV12345
+                    status: REPAIR_PENDING
+                Off Hired Container:
+                  value:
+                    gateEventDate: '2024-01-08T16:35:38.862Z'
+                    hireEventDate: '2024-01-15T16:35:38.862Z'
+                    isHired: false
+                    depot: 
+                      companyId: DEHAMCMRA
+                      userCode: JDOE
+                      userName: John Doe,
+                      name: CMR Container Maintenance Rep.
+                      code: HAMG
+                      streetAddress: 
+                        -Main Street
+                      city: Hamburg,
+                      country: DE,
+                      postalCode: 12345
+                    adviceNumber: ADV12345
+                    status: CONFIRMED
+      operationId: get-hire
+      description: 'To be implemented by the container lessor, enabling a container operator to find the current status of a container and if it is registered as on or off hire.'
+    parameters:
+      - schema:
+          type: string
+        name: adviceNumber
+        in: path
+        required: true
+    post:
+      summary: Push Hire Status
+      tags:
+        - Hire
+      operationId: post-hire-adviceNumber
+      responses:
+        '200':
+          description: OK
+      description: To be implemented by the Carrier for Lessors to push changes to the hire status of a container.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HireStatus'
+            examples:
+              Off Hired Container:
+                  value:
+                    gateEventDate: '2024-01-08T16:35:38.862Z'
+                    hireEventDate: '2024-01-15T16:35:38.862Z'
+                    isHired: false
+                    depot: 
+                      companyId: DEHAMCMRA
+                      userCode: JDOE
+                      userName: John Doe,
+                      name: CMR Container Maintenance Rep.
+                      code: HAMG
+                      streetAddress: 
+                        -Main Street
+                      city: Hamburg,
+                      country: DE,
+                      postalCode: 12345
+                    adviceNumber: ADV12345
+                    status: CONFIRMED
+              On Hired Container:
+                  value:
+                    gateEventDate: '2024-01-08T16:35:38.862Z'
+                    hireEventDate: '2024-01-10T16:35:38.862Z'
+                    isHired: true
+                    depot: 
+                      companyId: DEHAMCMRA
+                      userCode: JDOE
+                      userName: John Doe,
+                      name: CMR Container Maintenance Rep.
+                      code: HAMG
+                      streetAddress: 
+                        -Main Street
+                      city: Hamburg,
+                      country: DE,
+                      postalCode: 12345
+                    adviceNumber: ADV12345
+                    status: CONFIRMED
   /api/v2/estimate:
     get:
       tags:
@@ -2469,6 +2611,35 @@ components:
             $ref: '#/components/schemas/GateUpdatePhoto'
       description: Data required to update a gate in or gate out record. Any data
         not provided will result in no update.
+    HireStatus:
+      title: HireStatus
+      type: object
+      properties:
+        gateEventDate:
+          type: string
+          format: date-time
+          example: '2024-01-08T16:35:38.862Z'
+        hireEventDate:
+          type: string
+          format: date-time
+          example: '2024-01-08T16:35:38.862Z'
+        isHired:
+          type: boolean
+          example: true
+        depot:
+          $ref: '#/components/schemas/Party'
+        adviceNumber:
+          type: string
+          example: ADV12345
+        status:
+          type: string
+          example: ESTIMATE_PENDING
+          description: |-
+            One of the following Status Codes will be provided:
+            
+            * ESTIMATE_PENDING - Estimate needs to be approved
+            * REPAIR_PENDING - Repair needs to be completed
+            * CONFIRMED - Container is confirmed on or off hired as per contract
     InsuranceCoverage:
       type: object
       properties:
