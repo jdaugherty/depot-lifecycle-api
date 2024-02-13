@@ -273,10 +273,10 @@ paths:
                       name: CMR Container Maintenance Rep.
                       code: HAMG
                       streetAddress: 
-                        -Main Street
-                      city: Hamburg,
-                      country: DE,
-                      postalCode: 12345
+                        - Main Street
+                      city: Hamburg
+                      country: DE
+                      postalCode: A12345
                     adviceNumber: ADV12345
                     status: CONFIRMED
                 Gated In Container - Pending Estimate Approval to Off Hire:
@@ -290,10 +290,10 @@ paths:
                       name: CMR Container Maintenance Rep.
                       code: HAMG
                       streetAddress: 
-                        -Main Street
-                      city: Hamburg,
-                      country: DE,
-                      postalCode: 12345
+                        - Main Street
+                      city: Hamburg
+                      country: DE
+                      postalCode: A12345
                     adviceNumber: ADV12345
                     status: ESTIMATE_PENDING
                 Gated In Container - Pending Repair to Off Hire:
@@ -307,10 +307,10 @@ paths:
                       name: CMR Container Maintenance Rep.
                       code: HAMG
                       streetAddress: 
-                        -Main Street
-                      city: Hamburg,
-                      country: DE,
-                      postalCode: 12345
+                        - Main Street
+                      city: Hamburg
+                      country: DE
+                      postalCode: A12345
                     adviceNumber: ADV12345
                     status: REPAIR_PENDING
                 Off Hired Container:
@@ -325,10 +325,10 @@ paths:
                       name: CMR Container Maintenance Rep.
                       code: HAMG
                       streetAddress: 
-                        -Main Street
-                      city: Hamburg,
-                      country: DE,
-                      postalCode: 12345
+                        - Main Street
+                      city: Hamburg
+                      country: DE
+                      postalCode: A12345
                     adviceNumber: ADV12345
                     status: CONFIRMED
       operationId: get-hire
@@ -366,10 +366,10 @@ paths:
                       name: CMR Container Maintenance Rep.
                       code: HAMG
                       streetAddress: 
-                        -Main Street
-                      city: Hamburg,
-                      country: DE,
-                      postalCode: 12345
+                        - Main Street
+                      city: Hamburg
+                      country: DE
+                      postalCode: A12345
                     adviceNumber: ADV12345
                     status: CONFIRMED
               On Hired Container:
@@ -384,10 +384,10 @@ paths:
                       name: CMR Container Maintenance Rep.
                       code: HAMG
                       streetAddress: 
-                        -Main Street
-                      city: Hamburg,
-                      country: DE,
-                      postalCode: 12345
+                        - Main Street
+                      city: Hamburg
+                      country: DE
+                      postalCode: A12345
                     adviceNumber: ADV12345
                     status: CONFIRMED
   /api/v2/estimate:
